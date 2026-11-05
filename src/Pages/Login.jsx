@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 
-import { getAuth, signInWithPopup } from "firebase/auth";
+import { getAuth, signInWithPopup, signOut } from "firebase/auth";
 import { provider } from "../fairbase/Fairbase.config";
 
 const auth = getAuth();
@@ -8,13 +9,24 @@ const auth = getAuth();
 const Login = () => {
   const [user, setuser] = useState(null);
 
-  const googlehandler = (e) => {
+  const SignIngooglehandler = (e) => {
     e.preventDefault();
     signInWithPopup(auth, provider)
       .then((result) => {
         const loginUser = result.user;
-        console.log(loginUser);
+        toast.success("LogIn successfullY");
         setuser(loginUser);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const signOutGooogle = () => {
+    signOut(auth)
+      .then(() => {
+        toast.error("Successfully LogOut");
+        setuser(null);
       })
       .catch((err) => {
         console.log(err);
@@ -36,19 +48,29 @@ const Login = () => {
               <button className="btn btn-neutral mt-4">Sign Up</button>
             </form>
             <div className="flex gap-5">
-              <button onClick={googlehandler} className="btn btn-neutral mt-4">
-                SignUp with Google
-              </button>
-              <button className="btn btn-neutral mt-4">
-                SignUp with Github
-              </button>
+              {user ? (
+                <button
+                  onClick={signOutGooogle}
+                  className="btn btn-neutral mt-4"
+                >
+                  Sign Out
+                </button>
+              ) : (
+                <button
+                  onClick={SignIngooglehandler}
+                  className="btn btn-neutral mt-4"
+                >
+                  SignUp with Google
+                </button>
+              )}
             </div>
           </div>
         </div>
-        <div></div>
       </div>
+      <ToastContainer></ToastContainer>
     </div>
   );
 };
 
 export default Login;
+0;
