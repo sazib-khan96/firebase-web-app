@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 
+
 import { getAuth, signInWithPopup, signOut } from "firebase/auth";
 import { provider } from "../fairbase/Fairbase.config";
 
 const auth = getAuth();
 
 const Login = () => {
+
+   
   const [user, setuser] = useState(null);
+
 
   const SignIngooglehandler = (e) => {
     e.preventDefault();
@@ -16,6 +20,9 @@ const Login = () => {
         const loginUser = result.user;
         toast.success("LogIn successfullY");
         setuser(loginUser);
+        console.log(loginUser)
+        
+
       })
       .catch((err) => {
         console.log(err);
@@ -64,8 +71,17 @@ const Login = () => {
                 </button>
               )}
             </div>
+
+           
           </div>
         </div>
+         {
+              user && <div>
+                <img src={user.photoURL} alt="" />
+                <h1>{user.displayName}</h1>
+                <h1>{user.email}</h1>
+              </div>
+            }
       </div>
       <ToastContainer></ToastContainer>
     </div>
