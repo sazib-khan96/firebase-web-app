@@ -3,7 +3,7 @@ import { Link, useLoaderData } from "react-router";
 
 const ProductDetails = () => {
   const productDetail = useLoaderData();
-  console.log(productDetail);
+  
   return (
     <div className="flex gap-5 bg-gray-100">
       <figure>
