@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router";
+
 
 const Login = () => {
   return (
@@ -14,7 +16,8 @@ const Login = () => {
         </div>
         <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
           <div className="card-body">
-            <fieldset className="fieldset">
+           <form action="">
+             <fieldset className="fieldset">
               <label className="label">Email</label>
               <input type="email" className="input" placeholder="Email" />
               <label className="label">Password</label>
@@ -24,6 +27,8 @@ const Login = () => {
               </div>
               <button className="btn btn-neutral mt-4">Login</button>
             </fieldset>
+            <p>Are you new Here ? please <Link to='/regester' className="text-blue-600 underline">Register</Link></p>
+           </form>
           </div>
         </div>
       </div>
