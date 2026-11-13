@@ -4,7 +4,7 @@ import { Outlet } from 'react-router';
 
 const Root = () => {
     return (
-        <div >
+        <div className=''>
             <Navigation></Navigation>
            
                 <main>

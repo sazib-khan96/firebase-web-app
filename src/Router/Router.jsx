@@ -2,10 +2,12 @@ import React from 'react';
 
 import { createBrowserRouter } from "react-router";
 import Root from '../Root/Root';
-import Home from '../Pages/Home';
-import Login from '../Pages/Login';
-import Products from '../Pages/Products';
-import ProductDetails from '../Components/ProductDetails';
+import Home from '../Pages/Home/Home';
+import Products from '../Pages/Products/Products';
+import Regester from '../Pages/Regester/Regester';
+import Login from '../Pages/Login/Login';
+
+
 
 
 const router = createBrowserRouter([
@@ -19,18 +21,17 @@ const router = createBrowserRouter([
             },
             {
                 path: 'products',
-                loader : ()=> fetch('https://dummyjson.com/products'),
-                Component:Products
+                Component: Products
             },
             {
-                path: 'ProductDetails/:id',
-                loader : ({params})=> fetch(`https://dummyjson.com/products/${params.id}`),
-                Component:ProductDetails
+                path: 'regester',
+                Component: Regester
             },
             {
                 path: 'login',
-                Component:Login
-            }
+                Component: Login
+            },
+            
         ]
     }
 ])
